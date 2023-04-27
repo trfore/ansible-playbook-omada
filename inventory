@@ -1,0 +1,2 @@
+[all]
+omada-controller ansible_host=<IP_ADDRESS> ansible_user=<USERNAME>

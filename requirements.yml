@@ -1,0 +1,5 @@
+---
+roles:
+  - name: trfore.jsvc
+  - name: trfore.mongodb_install
+  - name: trfore.omada_install

@@ -1,0 +1,26 @@
+- hosts: all
+  become: true
+  roles:
+    - name: Install MongoDB Community
+      tags: mongodb
+      role: trfore.mongodb_install
+
+    - name: Install jsvc Binary
+      tags: jsvc
+      role: trfore.jsvc
+
+    - name: Install Omada SDN
+      tags: omada
+      role: trfore.omada_install
+
+  post_tasks:
+    - name: Test Omada SDN is running.
+      tags: ['omada', 'test']
+      uri:
+        url: https://127.0.0.1:8043/login
+        status_code: 200
+        validate_certs: false
+      register: result
+      until: result.status == 200
+      retries: 12
+      delay: 10
